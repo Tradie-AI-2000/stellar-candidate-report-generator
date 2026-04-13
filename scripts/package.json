@@ -1,0 +1,9 @@
+{
+  "name": "stellar-report-scripts",
+  "version": "1.0.0",
+  "description": "Dependencies for Stellar candidate report generation",
+  "main": "build_report.cjs",
+  "dependencies": {
+    "puppeteer": "^22.6.0"
+  }
+}

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stellar Candidate Report</title>
+    <style>
+        :root {
+            --stellar-navy: #002340;
+            --stellar-bright-blue: #005dab;
+            --stellar-silver: #a7a9ab;
+        }
+        body {
+            font-family: 'Helvetica', Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.4;
+        }
+        .content-wrap {
+            padding: 0 18mm; /* Align with header/footer padding */
+        }
+        .section {
+            padding-top: 5mm;
+            padding-bottom: 5mm;
+        }
+        .page-break {
+            page-break-before: always;
+        }
+        
+        /* Cover Page Styling */
+        .cover-box {
+            background-color: var(--stellar-navy);
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 40mm;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            -webkit-print-color-adjust: exact;
+        }
+        .cover-name {
+            text-align: center;
+            margin-top: 30mm;
+            text-transform: uppercase;
+            color: var(--stellar-navy);
+            font-size: 32px;
+        }
+        .cover-role {
+            text-align: center;
+            margin-top: 5mm;
+            color: var(--stellar-bright-blue);
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+        th, td {
+            border: 1px solid var(--stellar-silver);
+            padding: 6px 10px;
+            text-align: left;
+            font-size: 11px;
+        }
+        th {
+            background-color: var(--stellar-navy);
+            color: white;
+            -webkit-print-color-adjust: exact;
+        }
+        .section-header {
+            color: var(--stellar-bright-blue);
+            border-bottom: 2px solid var(--stellar-bright-blue);
+            margin-bottom: 10px;
+            font-size: 18px;
+            padding-bottom: 5px;
+        }
+        .sub-header {
+            color: var(--stellar-bright-blue);
+            font-weight: bold;
+            margin-top: 12px;
+            margin-bottom: 5px;
+            font-size: 13px;
+        }
+        ul {
+            padding-left: 18px;
+            margin: 4px 0;
+            font-size: 11px;
+        }
+        li {
+            margin-bottom: 3px;
+        }
+        .exp-block {
+            margin-bottom: 12px;
+            page-break-inside: avoid;
+        }
+        p {
+            font-size: 11px;
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-wrap">
+        <!-- Page 1: Cover -->
+        <div class="section">
+            <div class="cover-box">
+                <h1 style="margin:0; font-size: 28px;">CONFIDENTIAL</h1>
+                <h2 style="margin:10px 0 0 0; font-size: 22px;">RESUME & REPORT</h2>
+            </div>
+            <div class="cover-name">{{candidate_name}}</div>
+            <div class="cover-role">for the position of<br><span style="margin-top: 5px; display: block;">{{target_role}}</span></div>
+            
+            <div style="margin-top: 50mm;">
+                <div style="background: var(--stellar-navy); color: white; padding: 5px 10px; font-weight: bold; font-size: 13px; -webkit-print-color-adjust: exact;">CONSULTANT DETAILS</div>
+                <table>
+                    <tr><td width="30%">Consultant</td><td>{{consultant_name}}</td></tr>
+                    <tr><td>Title</td><td>{{consultant_title}}</td></tr>
+                    <tr><td>Phone Number</td><td>{{consultant_phone}}</td></tr>
+                    <tr><td>Email Address</td><td>{{consultant_email}}</td></tr>
+                    <tr><td>Date</td><td>{{report_date}}</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Page 2: Consultant Report -->
+        <div class="section page-break">
+            <div class="section-header">Consultant's Report</div>
+            <div class="sub-header">Personal Details</div>
+            <table>
+                <tr><td width="30%">Name</td><td>{{candidate_name}}</td></tr>
+                <tr><td>Current Location</td><td>{{current_location}}</td></tr>
+                <tr><td>Position Sought</td><td>{{target_role}}</td></tr>
+                <tr><td>Availability</td><td>{{availability}}</td></tr>
+                <tr><td>Charge Rate</td><td>{{charge_rate}}</td></tr>
+                <tr><td>Own Transport</td><td>{{own_transport}}</td></tr>
+                <tr><td>English Level</td><td>{{english_level}}</td></tr>
+                <tr><td>Approved Work Regions</td><td>{{approved_work_regions}}</td></tr>
+            </table>
+
+            <div class="sub-header">Candidate Overview</div>
+            <p><strong>Experience:</strong> {{experience_summary}}</p>
+            <p><strong>Countries Worked:</strong> {{countries_worked}}</p>
+            
+            <div class="sub-header">Project Scope:</div>
+            <ul>{{project_scope_list}}</ul>
+            
+            <div class="sub-header">Duties:</div>
+            <ul>{{duties_list}}</ul>
+
+            <div class="sub-header">Project Status:</div>
+            <p>{{project_status}}</p>
+        </div>
+
+        <!-- Page 3: History & Competencies -->
+        <div class="section page-break">
+            <div class="section-header">Consultant's Report (continued)</div>
+            <div class="sub-header">Previous Work History</div>
+            <table>
+                <tr><th>Duration</th><th>Company</th><th>Position</th></tr>
+                {{work_history_rows}}
+            </table>
+
+            <div class="sub-header">Qualifications (Licenses, Certificates, Training)</div>
+            <ul>{{qualifications_list}}</ul>
+
+            <div class="sub-header">Core Competencies</div>
+            <ul>{{competencies_list}}</ul>
+        </div>
+
+        <!-- Page 4+: Resume -->
+        <div class="section page-break">
+            <div class="section-header">Candidate Resume</div>
+            <div style="color: var(--stellar-bright-blue); font-weight: bold; font-size: 15px; margin-bottom: 8px;">{{candidate_name}}</div>
+            
+            <div class="sub-header">Career Objective</div>
+            <p>{{career_objective}}</p>
+
+            <div class="sub-header">Key Strengths</div>
+            <ul>{{strengths_list}}</ul>
+
+            <div class="sub-header">Experience</div>
+            {{experience_blocks_html}}
+
+            <div class="sub-header">Systems</div>
+            <p>{{systems}}</p>
+
+            <div class="sub-header">Interests</div>
+            <p>{{interests}}</p>
+
+            <p style="text-align: center; color: var(--stellar-silver); font-style: italic; margin-top: 20px; font-size: 9px;">References available on request.</p>
+        </div>
+    </div>
+</body>
+</html>
