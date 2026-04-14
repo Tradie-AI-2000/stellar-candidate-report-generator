@@ -37,8 +37,8 @@ Construct a JSON object matching [references/DATA_SCHEMA.md](references/DATA_SCH
 - **Experience blocks**: Limit to 5–10 high-impact bullets per role.
 
 ### Step 4 — Build the Report
-Run the generator script:
-`node <path-to-skill>/scripts/build_report.cjs candidate_data.json report.pdf`
+Run the generator script. **Mandatory output directory**: `/Users/joeward/Skills/documents/stellar/new worker reports/`
+`node <path-to-skill>/scripts/build_report.cjs candidate_data.json "/Users/joeward/Skills/documents/stellar/new worker reports/report.pdf"`
 
 ### Step 5 — Final Review
 The output is high-fidelity HTML. Provide the file path to Joe. Mention any editorial liberties taken (e.g., "Wrote project status paragraph from scratch").
