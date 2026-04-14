@@ -31,17 +31,20 @@ The gold standard requires these fields. Use `ask_user` to confirm any missing d
 Construct a JSON object matching [references/DATA_SCHEMA.md](references/DATA_SCHEMA.md).
 
 **Editorial Rules:**
+- **Extract Standout Qualities**: Identify key themes from the source (e.g., "Leadership", "Technical Precision", "Project Management"). These must be central to the Candidate Overview.
 - **Tidy the prose**: Fix grammar and tense. The goal is client-ready.
-- **Project Status**: Write a fresh 4–6 sentence paragraph positioning the candidate for the target role.
+- **Candidate Overview (Expanded)**: Write a rich 5–8 sentence paragraph positioning the candidate. Incorporate their key qualities, years of experience, and a summary of their background (merging what was previously in "project scope").
+- **Work Experience**: List companies the candidate has worked for clearly.
+- **Project Scope (Conditional)**: Only include this if the candidate provides specific project details. Summarize as impact statements (e.g., "Led the construction of a community clinic - Leggat Builders"). Do not repeat company names here unless tied to a specific project.
 - **Career Objective**: Rewrite in the third person.
 - **Experience blocks**: Limit to 5–10 high-impact bullets per role.
 
 ### Step 4 — Build the Report
-Run the generator script. **Mandatory output directory**: `/Users/joeward/Skills/documents/stellar/new worker reports/`
-`node <path-to-skill>/scripts/build_report.cjs candidate_data.json "/Users/joeward/Skills/documents/stellar/new worker reports/report.pdf"`
+Run the generator script:
+`node <path-to-skill>/scripts/build_report.cjs candidate_data.json report.pdf`
 
 ### Step 5 — Final Review
-The output is high-fidelity HTML. Provide the file path to Joe. Mention any editorial liberties taken (e.g., "Wrote project status paragraph from scratch").
+The output is high-fidelity HTML. Provide the file path to Joe. Mention any editorial liberties taken (e.g., "Wrote expanded candidate overview focusing on leadership").
 
 ## Locked Elements — DO NOT CHANGE
 - **Consultant Details**: Joe Ward (Title, Phone, Email) is hard-coded in [references/consultant_details.json](references/consultant_details.json).

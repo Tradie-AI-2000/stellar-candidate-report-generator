@@ -7,8 +7,8 @@ const puppeteer = require('puppeteer');
 /**
  * stellar-candidate-report-generator/scripts/build_report.cjs
  * 
- * Refactored: Removed redundant min-height and page-break-after to fix blank pages.
- * Precise margins added to ensure banner alignment.
+ * Refactored: Updated to support new schema with expanded Candidate Overview,
+ * Work Experience list, and conditional Project Scope.
  */
 
 async function main() {
@@ -37,6 +37,8 @@ async function main() {
             weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' 
         });
 
+        const projectDetailsList = toLi(data.project_details);
+
         const replacements = {
             '{{candidate_name}}': data.candidate_name,
             '{{target_role}}': data.target_role,
@@ -51,11 +53,10 @@ async function main() {
             '{{own_transport}}': data.own_transport,
             '{{english_level}}': data.english_level,
             '{{approved_work_regions}}': data.approved_work_regions,
-            '{{experience_summary}}': data.experience_summary,
-            '{{countries_worked}}': data.countries_worked,
-            '{{project_scope_list}}': toLi(data.project_scope),
+            '{{candidate_overview}}': data.candidate_overview,
+            '{{work_experience_companies_list}}': toLi(data.work_experience_companies),
+            '{{project_details_list}}': projectDetailsList,
             '{{duties_list}}': toLi(data.duties),
-            '{{project_status}}': data.project_status,
             '{{qualifications_list}}': toLi(data.qualifications),
             '{{competencies_list}}': toLi(data.core_competencies),
             '{{work_history_rows}}': (data.work_history || []).map(job => 
@@ -73,6 +74,16 @@ async function main() {
                 </div>
             `).join('\n')
         };
+
+        // Handle the conditional project_details_list block
+        if (!data.project_details || data.project_details.length === 0) {
+            // Remove the block if empty
+            template = template.replace(/\{\{#if project_details_list\}\}[\s\S]*?\{\{\/if\}\}/g, '');
+        } else {
+            // Remove the markers but keep the content
+            template = template.replace(/\{\{#if project_details_list\}\}/g, '');
+            template = template.replace(/\{\{\/if\}\}/g, '');
+        }
 
         for (const [key, value] of Object.entries(replacements)) {
             template = template.split(key).join(value || '');

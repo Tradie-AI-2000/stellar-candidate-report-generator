@@ -142,17 +142,18 @@
             </table>
 
             <div class="sub-header">Candidate Overview</div>
-            <p><strong>Experience:</strong> {{experience_summary}}</p>
-            <p><strong>Countries Worked:</strong> {{countries_worked}}</p>
+            <p>{{candidate_overview}}</p>
             
+            <div class="sub-header">Work Experience:</div>
+            <ul>{{work_experience_companies_list}}</ul>
+
+            {{#if project_details_list}}
             <div class="sub-header">Project Scope:</div>
-            <ul>{{project_scope_list}}</ul>
+            <ul>{{project_details_list}}</ul>
+            {{/if}}
             
             <div class="sub-header">Duties:</div>
             <ul>{{duties_list}}</ul>
-
-            <div class="sub-header">Project Status:</div>
-            <p>{{project_status}}</p>
         </div>
 
         <!-- Page 3: History & Competencies -->

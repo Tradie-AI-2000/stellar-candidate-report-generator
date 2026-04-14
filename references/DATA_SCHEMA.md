@@ -13,15 +13,14 @@ Use this schema when mapping extracted CV text to the report generator.
 - `english_level`: string (e.g. "5 / 5 (Native)")
 - `approved_work_regions`: string (e.g. "N/A — NZ Citizen / Resident")
 
-## Candidate Overview
+## Consultant's Report (Page 1 & 2)
 
-- `experience_summary`: string (High-level summary, e.g. "35+ years across residential...")
-- `countries_worked`: string (e.g. "New Zealand")
-- `project_scope`: string array (Bulleted list of high-level projects/companies)
+- `candidate_overview`: string (Rich 5-8 sentence paragraph positioning the candidate, highlighting key qualities like leadership and overall experience)
+- `work_experience_companies`: string array (List of companies the candidate has worked for)
+- `project_details`: string array (Conditional: Bulleted list of specific project highlights, e.g. "Led the construction of a community clinic - Leggat Builders")
 - `duties`: string array (Bulleted list of key responsibilities)
-- `project_status`: string (4-6 sentences positioning the candidate)
 
-## Work History & Skills
+## Work History & Skills (Page 3)
 
 - `work_history`: array of objects
   - `duration`: string (e.g. "Jul 2023 – Present")
@@ -29,11 +28,11 @@ Use this schema when mapping extracted CV text to the report generator.
   - `position`: string
 - `qualifications`: string array
 - `core_competencies`: string array (Value-added strengths)
-- `career_objective`: string (Third person, client-facing)
-- `key_strengths`: string array (6-8 impact bullets)
 
 ## Experience Detail (Full Resume)
 
+- `career_objective`: string (Third person, client-facing)
+- `key_strengths`: string array (6-8 impact bullets)
 - `experience_blocks`: array of objects
   - `role`: string
   - `company`: string
